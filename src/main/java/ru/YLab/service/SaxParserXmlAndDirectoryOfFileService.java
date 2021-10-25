@@ -2,8 +2,8 @@ package ru.YLab.service;
 
 import org.xml.sax.SAXException;
 import ru.YLab.entity.FileAndDirectory;
-import ru.YLab.model2.SaxParserHandler;
-import ru.YLab.model2.SearchFile;
+import ru.YLab.model.SaxParserHandler;
+import ru.YLab.model.SearchFile;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

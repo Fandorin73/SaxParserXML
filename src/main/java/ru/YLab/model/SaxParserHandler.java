@@ -1,4 +1,4 @@
-package ru.YLab.model2;
+package ru.YLab.model;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

@@ -14,7 +14,7 @@ public class Main {
                 System.out.println("Не верный формат, напишите в формате: $ java -jar assignment.jar -f <xml_file> -s <input>");
         } catch (Exception e) {
             if (args[0].equals("-f"))
-                parser.showFileDirectory("test1.xml", null);
+                parser.showFileDirectory(args[1], "");
             else
                 System.out.println("Не верный формат, напишите в формате: $ java -jar assignment.jar -f <xml_file> -s <input>");
         }
