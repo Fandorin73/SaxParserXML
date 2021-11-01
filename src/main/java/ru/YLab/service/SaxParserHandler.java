@@ -1,4 +1,4 @@
-package ru.YLab.model;
+package ru.YLab.service;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -32,14 +32,19 @@ public class SaxParserHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("true")) {isFile = true;}
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("false")) {isDirectory = true;
+        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("true")) {
+            isFile = true;
+        }
+        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("false")) {
+            isDirectory = true;
         }
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (directoryString.size() != 1 && qName.equals(TAG_CHILDREN)) { directoryString.remove(directoryString.size() - 1);}
+        if (directoryString.size() != 1 && qName.equals(TAG_CHILDREN)) {
+            directoryString.remove(directoryString.size() - 1);
+        }
         currentTagName = null;
         isFile = false;
         isDirectory = false;
@@ -54,13 +59,14 @@ public class SaxParserHandler extends DefaultHandler {
         if (isFile && currentTagName.equals(TAG_NAME)) {
             for (String str : directoryString) {
                 resultString += str;
-
             }
             listOfFiles.add(new FileAndDirectory(new String(ch, start, length), resultString));
             resultString = "";
         }
 
-        if (isDirectory && currentTagName.equals(TAG_NAME)) {directoryString.add(new String(ch, start, length) + '/');}
+        if (isDirectory && currentTagName.equals(TAG_NAME)) {
+            directoryString.add(new String(ch, start, length) + '/');
+        }
 
     }
 }
