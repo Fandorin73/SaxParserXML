@@ -1,9 +1,8 @@
 package ru.YLab;
 
-
 import ru.YLab.service.SaxParserXmlAndDirectoryOfFileService;
 
-public class Main {
+public class  Main {
     public static void main(String[] args) {
         SaxParserXmlAndDirectoryOfFileService parser = new SaxParserXmlAndDirectoryOfFileService();
         //Проверяем формат запроса и вызываем сервис который анализирует xml файл и выводит искомую директорию(и)

@@ -18,7 +18,6 @@ public class SaxParserHandler extends DefaultHandler {
     private String currentTagName;
     List<FileAndDirectory> listOfFiles = new ArrayList<>();
 
-
     //переменные для проверки, isFile являеться ли файлом или isDirectory директорией
     private Boolean isFile = false;
     private Boolean isDirectory = false;
@@ -27,41 +26,20 @@ public class SaxParserHandler extends DefaultHandler {
     private String resultString;
 
     public List<FileAndDirectory> getParsedfile() {
-
         return listOfFiles;
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-
-
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
-
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("true")) {
-            isFile = true;
+        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("true")) {isFile = true;}
+        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("false")) {isDirectory = true;
         }
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("false")) {
-            isDirectory = true;
-        }
-
-
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-
-
-        if (directoryString.size() != 1 && qName.equals(TAG_CHILDREN))
-            directoryString.remove(directoryString.size() - 1);
+        if (directoryString.size() != 1 && qName.equals(TAG_CHILDREN)) { directoryString.remove(directoryString.size() - 1);}
         currentTagName = null;
         isFile = false;
         isDirectory = false;
@@ -70,7 +48,6 @@ public class SaxParserHandler extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-
         if (currentTagName == null) {
             return;
         }
@@ -83,7 +60,7 @@ public class SaxParserHandler extends DefaultHandler {
             resultString = "";
         }
 
-        if (isDirectory && currentTagName.equals(TAG_NAME)) directoryString.add(new String(ch, start, length) + '/');
+        if (isDirectory && currentTagName.equals(TAG_NAME)) {directoryString.add(new String(ch, start, length) + '/');}
 
     }
 }
