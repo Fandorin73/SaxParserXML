@@ -11,9 +11,12 @@ public class SearchFileService {
         if (searchingFile.equals(list.getName())) {
             getResult = true;
             System.out.println(list);
-        } else if (!getResult && list.getName().matches(searchingFile) && searchingFile.matches(searchingFile))
+        } else if (!getResult && list.getName().matches("." + searchingFile)) {
             System.out.println(list);
-        else if (searchingFile.equals("")) System.out.println(list);
+            getResult = true;
+        } else if (!getResult && searchingFile.equals("")) {
+            System.out.println(list);
+        }
     }
 
 
