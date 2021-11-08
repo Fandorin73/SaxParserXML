@@ -1,6 +1,5 @@
-package ru.YLab.service;
+package ru.YLab.util;
 
-import ru.YLab.entity.FileAndDirectory;
 import ru.YLab.exception.ArgumentException;
 
 public class SearchFileService {
@@ -21,19 +20,19 @@ public class SearchFileService {
 
 
     public void showSearchingFile(String[] args) {
-        SaxParserXmlAndDirectoryOfFileService parser = new SaxParserXmlAndDirectoryOfFileService();
+      /*  SaxParser parser = new SaxParser();*/
         //Проверяем формат запроса и вызываем сервис который анализирует xml файл и выводит искомую директорию(и)
         try {
             if (args[0].equals("-f") & args[2].equals("-s")) {
                 {
-                    parser.showFileDirectory(args[1], args[3]);
+               /*     parser.showFileDirectory(args[1], args[3]);*/
                 }
             } else
                 throw new ArgumentException("Не верный формат, напишите в формате: $ java -jar assignment.jar -f <xml_file> -s <input> " + args[1] + " " + args[3]);
         } catch (Exception e) {
             if (args[0].equals("-f")) {
                 {
-                    parser.showFileDirectory(args[1], "");
+                /*    parser.showFileDirectory(args[1], "");*/
                 }
             } else
                 throw new ArgumentException("Не верный формат, напишите в формате: $ java -jar assignment.jar -f <xml_file> -s <input> " + args[0]);

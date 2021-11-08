@@ -1,4 +1,4 @@
-package ru.YLab.entity;
+package ru.YLab.util;
 
 public class FileAndDirectory {
     // Файл и директроия где он находиться

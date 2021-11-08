@@ -1,22 +1,23 @@
-package ru.YLab.service;
+package ru.YLab.parser;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import ru.YLab.entity.FileAndDirectory;
+import ru.YLab.comporator.AbstractComparator;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static ru.YLab.constant.FileAndDirectoryParseConst.TAG_CHILD;
-import static ru.YLab.constant.FileAndDirectoryParseConst.TAG_CHILDREN;
-import static ru.YLab.constant.FileAndDirectoryParseConst.TAG_NAME;
+import static ru.YLab.constant.FileAndDirectoryParseConst.*;
 
-public class SaxParserHandler extends DefaultHandler {
+public class NodeParser extends DefaultHandler {
 
     private String currentTagName;
-    List<FileAndDirectory> listOfFiles = new ArrayList<>();
+    private AbstractComparator comparator;
+
+    public void setComparator(AbstractComparator comparator) {
+        this.comparator = comparator;
+    }
 
     //переменные для проверки, isFile являеться ли файлом или isDirectory директорией
     private Boolean isFile = false;
@@ -25,17 +26,14 @@ public class SaxParserHandler extends DefaultHandler {
     ArrayList<String> directoryString = new ArrayList<>();
     private String resultString;
 
-    public List<FileAndDirectory> getParsedfile() {
-        return listOfFiles;
-    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("true")) {
+        if (currentTagName.equals(INCLUDE_NODE) && attributes.getValue(IS_FILE).equals(TRUE)) {
             isFile = true;
         }
-        if (currentTagName.equals(TAG_CHILD) && attributes.getValue("is-file").equals("false")) {
+        if (currentTagName.equals(INCLUDE_NODE) && !attributes.getValue(IS_FILE).equals(TRUE)) {
             isDirectory = true;
         }
     }
@@ -56,16 +54,16 @@ public class SaxParserHandler extends DefaultHandler {
         if (currentTagName == null) {
             return;
         }
-        if (isFile && currentTagName.equals(TAG_NAME)) {
+        if (isFile && currentTagName.equals(ACTIVE_NODE) && comparator.startComparator(new String(ch, start, length))) {
             for (String str : directoryString) {
                 resultString += str;
             }
-            listOfFiles.add(new FileAndDirectory(new String(ch, start, length), resultString));
+            System.out.println(resultString + new String(ch, start, length));
             resultString = "";
         }
 
-        if (isDirectory && currentTagName.equals(TAG_NAME)) {
-            directoryString.add(new String(ch, start, length) + '/');
+        if (isDirectory && currentTagName.equals(ACTIVE_NODE)) {
+            directoryString.add(new String(ch, start, length) + SPLIT_DIR);
         }
 
     }
