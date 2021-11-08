@@ -24,7 +24,7 @@ public class NodeParser extends DefaultHandler {
     private Boolean isDirectory = false;
 
     ArrayList<String> directoryString = new ArrayList<>();
-    private String resultString;
+    private String resultString=SPLIT_DIR;
 
 
     @Override
@@ -56,8 +56,9 @@ public class NodeParser extends DefaultHandler {
         }
         if (isFile && currentTagName.equals(ACTIVE_NODE) && comparator.startComparator(new String(ch, start, length))) {
             for (String str : directoryString) {
-                resultString += str;
+               resultString += str;
             }
+
             System.out.println(resultString + new String(ch, start, length));
             resultString = "";
         }
