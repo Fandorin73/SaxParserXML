@@ -1,10 +1,10 @@
-XMLParser
+			XMLParser
 
 
-1)Описание:
+	1)Описание:
 По запросу программа выводит полный путь файла(файлов) из XML-файла, содержащего представление иерархии. Один узел может быть либо файлом, либо каталогом, который определяется атрибутом is-file.
 
-2)Пример работы:
+	2)Пример работы:
 
 Файл с директориями:
 https://drive.google.com/file/d/1hencNuxdueKQUQD3LUVxuPEnbT3bYs2V/view?usp=sharing
@@ -37,7 +37,7 @@ $ java -jar assignment.jar -f test-files.xml -S .*?[a-z]{4}-\d+\.[a-z]+
 /dir-88.971375/file-9.738721998xaavaa
 /dir-880176375/dir-2145307015/file-1498940214.xhtml
 
-3)Запуск(Командная строка):
+	3)Запуск(Командная строка):
 
 git clone https://bitbucket.org/fandorin73/lesson2-2
 
