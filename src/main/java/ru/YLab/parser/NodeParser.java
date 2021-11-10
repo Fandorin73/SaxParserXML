@@ -25,7 +25,7 @@ public class NodeParser extends DefaultHandler {
     private Boolean isFile = false;
     private Boolean isDirectory = false;
 
-   List<String> directory = new LinkedList<>();
+   List<String> directory;
     private String resultString=SPLIT_DIR;
 
 
