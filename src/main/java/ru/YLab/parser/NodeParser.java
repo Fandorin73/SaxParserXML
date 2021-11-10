@@ -7,6 +7,8 @@ import ru.YLab.comporator.AbstractComparator;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import static ru.YLab.constant.FileAndDirectoryParseConst.*;
 
@@ -23,7 +25,7 @@ public class NodeParser extends DefaultHandler {
     private Boolean isFile = false;
     private Boolean isDirectory = false;
 
-    ArrayList<String> directoryString = new ArrayList<>();
+   List<String> directory = new LinkedList<>();
     private String resultString=SPLIT_DIR;
 
 
@@ -40,8 +42,8 @@ public class NodeParser extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (directoryString.size() != 1 && qName.equals(TAG_CHILDREN)) {
-            directoryString.remove(directoryString.size() - 1);
+        if (directory.size() != 1 && qName.equals(TAG_CHILDREN)) {
+            directory.remove(directory.size() - 1);
         }
         currentTagName = null;
         isFile = false;
@@ -55,7 +57,7 @@ public class NodeParser extends DefaultHandler {
             return;
         }
         if (isFile && currentTagName.equals(ACTIVE_NODE) && comparator.startComparator(new String(ch, start, length))) {
-            for (String str : directoryString) {
+            for (String str : directory) {
                resultString += str;
             }
 
@@ -64,7 +66,7 @@ public class NodeParser extends DefaultHandler {
         }
 
         if (isDirectory && currentTagName.equals(ACTIVE_NODE)) {
-            directoryString.add(new String(ch, start, length) + SPLIT_DIR);
+            directory.add(new String(ch, start, length) + SPLIT_DIR);
         }
 
     }
