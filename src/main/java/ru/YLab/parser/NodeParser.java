@@ -3,8 +3,7 @@ package ru.YLab.parser;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import ru.YLab.comporator.AbstractComparator;
-import ru.YLab.constant.FileAndDirectoryParseConst;
+import ru.YLab.comparator.AbstractComparator;
 
 
 import java.util.ArrayList;

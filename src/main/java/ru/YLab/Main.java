@@ -1,12 +1,10 @@
 package ru.YLab;
 
 import ru.YLab.argument.ArgumentProcess;
-import ru.YLab.comporator.AbstractComparator;
-import ru.YLab.comporator.FactoryBuilderParser;
+import ru.YLab.comparator.AbstractComparator;
+import ru.YLab.comparator.FactoryBuilderParser;
 import ru.YLab.exception.ArgumentException;
 import ru.YLab.parser.SaxParser;
-
-import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {

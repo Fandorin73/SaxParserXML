@@ -1,4 +1,4 @@
-package ru.YLab.comporator;
+package ru.YLab.comparator;
 
 public class EqalsComparator extends AbstractComparator {
     @Override

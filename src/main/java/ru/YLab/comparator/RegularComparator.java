@@ -1,4 +1,4 @@
-package ru.YLab.comporator;
+package ru.YLab.comparator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,6 +1,6 @@
 package ru.YLab.parser;
 
-import ru.YLab.comporator.AbstractComparator;
+import ru.YLab.comparator.AbstractComparator;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
