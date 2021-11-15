@@ -4,6 +4,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import ru.YLab.comporator.AbstractComparator;
+import ru.YLab.constant.FileAndDirectoryParseConst;
 
 
 import java.util.ArrayList;
@@ -27,15 +28,20 @@ public class NodeParser extends DefaultHandler {
     List<String> directory = new ArrayList<>();
     private String resultString = SPLIT_DIR;
 
+    private boolean checkElement(Attributes attributes) {
+        return attributes.getLength() > 0;
+    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
-        if (currentTagName.equals(INCLUDE_NODE) && attributes.getValue(IS_FILE).equals(TRUE)) {
-            isFile = true;
-        }
-        if (currentTagName.equals(INCLUDE_NODE) && !attributes.getValue(IS_FILE).equals(TRUE)) {
-            isDirectory = true;
+        if (checkElement(attributes)) {
+            if (currentTagName.equals(INCLUDE_NODE) && attributes.getValue(IS_FILE).equals(TRUE)) {
+                isFile = true;
+            }
+            if (currentTagName.equals(INCLUDE_NODE) && !attributes.getValue(IS_FILE).equals(TRUE)) {
+                isDirectory = true;
+            }
         }
     }
 

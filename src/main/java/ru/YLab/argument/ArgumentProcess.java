@@ -26,7 +26,7 @@ public class ArgumentProcess {
     }
 
     public ArgumentProcess(String[] args) {
-        validator(args);
+       validator(args);
     }
 
     public void validator(String[] args) {
