@@ -6,6 +6,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import ru.YLab.comporator.AbstractComparator;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ru.YLab.constant.FileAndDirectoryParseConst.*;
@@ -23,8 +24,8 @@ public class NodeParser extends DefaultHandler {
     private Boolean isFile = false;
     private Boolean isDirectory = false;
 
-   List<String> directory;
-    private String resultString=SPLIT_DIR;
+    List<String> directory = new ArrayList<>();
+    private String resultString = SPLIT_DIR;
 
 
     @Override
@@ -51,15 +52,14 @@ public class NodeParser extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        String content=new String(ch, start, length);
+        String content = new String(ch, start, length);
         if (currentTagName == null) {
             return;
         }
         if (isFile && currentTagName.equals(ACTIVE_NODE) && comparator.startComparator(content)) {
             for (String str : directory) {
-               resultString += str;
+                resultString += str;
             }
-
             System.out.println(resultString + content);
             resultString = "";
         }

@@ -15,8 +15,10 @@ public class Main {
             comparator.setMask(argumentProcess.getMask());
             new SaxParser(comparator,argumentProcess.getInputFileName());
         }
+
         catch (Exception e){
             throw new ArgumentException("Not file or incorrect mask"+ e);
         }
+
     }
 }
