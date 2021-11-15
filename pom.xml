@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
-    <artifactId>lesson2-2</artifactId>
-    <version>2</version>
+    <artifactId>lesson5</artifactId>
+    <version>1</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
