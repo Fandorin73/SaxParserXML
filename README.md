@@ -11,7 +11,7 @@ https://drive.google.com/file/d/1hencNuxdueKQUQD3LUVxuPEnbT3bYs2V/view?usp=shari
 
 Не введен поисковой запрос:
 
-$ java -jar assignment.jar -f test-files.xml
+$ java -jar SaxPasrserXML-1.jar -f test-files.xml
 
 /file-77194797.xmml
 /dir-88.971375/file-9.738721998xaavaa
@@ -19,19 +19,19 @@ $ java -jar assignment.jar -f test-files.xml
 
 Точный ввод для поиска:
 
-$ java -jar assignment.jar -f test-files.xml -s file-1498940214.xhtml
+$ java -jar SaxPasrserXML-1.jar -f test-files.xml -s file-1498940214.xhtml
 
 /dir-880176375/dir-2145307015/file-1498940214.xhtml
 
 Простой поисковый ввод:
 
-$ java -jar assignment.jar -f test-files.xml -s *.java
+$ java -jar SaxPasrserXML-1.jar -f test-files.xml -s *.java
 
 /dir-88.971375/file-9.738721998xaavaa
 
 Расширенный ввод для поиска:
 
-$ java -jar assignment.jar -f test-files.xml -S .*?[a-z]{4}-\d+\.[a-z]+
+$ java -jar SaxPasrserXML-1.jar -f test-files.xml -S .*?[a-z]{4}-\d+\.[a-z]+
 
 /file-77194797.xmml
 /dir-88.971375/file-9.738721998xaavaa
