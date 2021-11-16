@@ -1,16 +1,6 @@
 package ru.YLab.comparator;
 
-public abstract class AbstractComparator {
-
-    private String mask;
-
-    public String getMask() {
-        return mask;
-    }
-
-    public void setMask(String mask) {
-        this.mask = mask;
-    }
+public abstract class AbstractComparator extends ComparatorMask {
 
     public abstract void start();
 
