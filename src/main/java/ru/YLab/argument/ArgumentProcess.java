@@ -8,25 +8,10 @@ import java.io.IOException;
 
 import static ru.YLab.constant.FileAndDirectoryParseConst.*;
 
-public class ArgumentProcess {
-    private String inputFileName;
-    private String mask;
-    ComparatorTypeConst type;
-
-    public String getInputFileName() {
-        return inputFileName;
-    }
-
-    public String getMask() {
-        return mask;
-    }
-
-    public ComparatorTypeConst getType() {
-        return type;
-    }
+public class ArgumentProcess extends ArgumentProcessParam {
 
     public ArgumentProcess(String[] args) {
-       validator(args);
+        validator(args);
     }
 
     public void validator(String[] args) {

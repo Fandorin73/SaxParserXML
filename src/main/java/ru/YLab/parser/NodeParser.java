@@ -30,15 +30,18 @@ public class NodeParser extends DefaultHandler {
     private boolean checkElement(Attributes attributes) {
         return attributes.getLength() > 0;
     }
+    private boolean checkIsFile(Attributes attributes) {
+        return attributes.getValue(IS_FILE).equals(TRUE);
+    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
         if (checkElement(attributes)) {
-            if (currentTagName.equals(INCLUDE_NODE) && attributes.getValue(IS_FILE).equals(TRUE)) {
+            if (currentTagName.equals(INCLUDE_NODE) && checkIsFile(attributes)) {
                 isFile = true;
             }
-            if (currentTagName.equals(INCLUDE_NODE) && !attributes.getValue(IS_FILE).equals(TRUE)) {
+            if (currentTagName.equals(INCLUDE_NODE) && !checkIsFile(attributes)) {
                 isDirectory = true;
             }
         }
