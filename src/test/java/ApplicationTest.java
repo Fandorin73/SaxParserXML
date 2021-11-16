@@ -35,7 +35,7 @@ class ApplicationTest {
     @Test
     public void regularSearchTest() {
 
-        Main.main(new String[]{"-f", "src/test/resources/test-files.xml", "-S", ".*?[a-z]{4}-\\d+.[a-z]+"});
+        Main.main(new String[]{"-f", "src/test/resources/test-files.xml", "-S", ".*?[a-z]{4}-\\d+\\.[a-z]+"});
         String result = "/file-77194797.xmml\r\n"
                 + "dir-88971375/file-9738721998.java\r\n"
                 + "dir-88971375/file-1272239243.txt\r\n"
