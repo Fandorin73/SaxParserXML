@@ -1,13 +1,13 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.engine.*;
 import ru.YLab.Main;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IntegrationTest {
+class TestIntegration {
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @BeforeEach

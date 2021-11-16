@@ -1,6 +1,8 @@
 package ru.YLab.comparator;
 
 import org.junit.jupiter.api.Test;
+import ru.YLab.comparator.AbstractComparator;
+import ru.YLab.comparator.FullComparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

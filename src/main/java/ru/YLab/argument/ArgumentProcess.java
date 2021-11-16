@@ -4,7 +4,6 @@ import ru.YLab.constant.ComparatorTypeConst;
 import ru.YLab.exception.ArgumentException;
 
 import java.io.File;
-import java.io.IOException;
 
 import static ru.YLab.constant.FileAndDirectoryParseConst.*;
 
