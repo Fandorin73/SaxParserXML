@@ -1,6 +1,6 @@
 package ru.YLab.comparator;
 
-public abstract class AbstractComparator extends ComparatorMask {
+public abstract class AbstractComparator extends ComparatorProcess {
 
     public abstract void start();
 

@@ -6,74 +6,54 @@ import org.xml.sax.helpers.DefaultHandler;
 import ru.YLab.comparator.AbstractComparator;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static ru.YLab.constant.FileAndDirectoryParseConst.*;
 
 public class NodeParser extends DefaultHandler {
 
     private String currentTagName;
     private AbstractComparator comparator;
-
     public void setComparator(AbstractComparator comparator) {
         this.comparator = comparator;
     }
-
-    //переменные для проверки, isFile являеться ли файлом или isDirectory директорией
     private Boolean isFile = false;
     private Boolean isDirectory = false;
 
-    List<String> directory = new ArrayList<>();
-    private String resultString = SPLIT_DIR;
-
-    private boolean checkElement(Attributes attributes) {
-        return attributes.getLength() > 0;
-    }
-    private boolean checkIsFile(Attributes attributes) {
-        return attributes.getValue(IS_FILE).equals(TRUE);
-    }
-
+    private boolean checkElement(Attributes attributes) { return attributes.getLength() > 0;}
+    private boolean checkIsFile(Attributes attributes) { return attributes.getValue(IS_FILE).equals(TRUE); }
+    private boolean checkIsIncludeNode(String currentTagName) { return currentTagName.equals(INCLUDE_NODE);}
+    private boolean checkIsActiveNode(String currentTagName) {  return currentTagName.equals(ACTIVE_NODE); }
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentTagName = qName;
         if (checkElement(attributes)) {
-            if (currentTagName.equals(INCLUDE_NODE) && checkIsFile(attributes)) {
+            if (checkIsIncludeNode(currentTagName) && checkIsFile(attributes)) {
                 isFile = true;
             }
-            if (currentTagName.equals(INCLUDE_NODE) && !checkIsFile(attributes)) {
+            if (checkIsIncludeNode(currentTagName) && !checkIsFile(attributes)) {
                 isDirectory = true;
             }
         }
     }
-
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (directory.size() != 1 && qName.equals(TAG_CHILDREN)) {
-            directory.remove(directory.size() - 1);
-        }
+        comparator.removeDirectory(qName);
         currentTagName = null;
         isFile = false;
         isDirectory = false;
 
     }
-
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         String content = new String(ch, start, length);
         if (currentTagName == null) {
             return;
         }
-        if (isFile && currentTagName.equals(ACTIVE_NODE) && comparator.startComparator(content)) {
-            for (String str : directory) {
-                resultString += str;
-            }
-            System.out.println(resultString + content);
-            resultString = "";
+        if (isFile && checkIsActiveNode(currentTagName) && comparator.startComparator(content)) {
+            comparator.printDirectory(content);
         }
 
-        if (isDirectory && currentTagName.equals(ACTIVE_NODE)) {
-            directory.add(content + SPLIT_DIR);
+        if (isDirectory && checkIsActiveNode(currentTagName)) {
+            comparator.addToDirectory(content);
         }
 
     }
